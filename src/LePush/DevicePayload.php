@@ -7,7 +7,7 @@ class DevicePayload {
     const API_DOMAIN = 'http://api.upush.aoidc.net';
     /**
      * DevicePayload constructor.
-     * @param $client JPush
+     * @param $client LePush
      */
     public function __construct($client)
     {

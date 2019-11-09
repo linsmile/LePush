@@ -30,7 +30,7 @@ class PushPayload {
 
     /**
      * PushPayload constructor.
-     * @param $client JPush
+     * @param $client LePush
      */
     function __construct($client) {
         $this->client = $client;
