@@ -1,5 +1,5 @@
 {
-    "name": "LePush/LePush",
+    "name": "lepush/lepush",
     "type": "library",
     "description": "LePush API PHP Client",
     "homepage": "https://github.com/linsmile/LePush",
