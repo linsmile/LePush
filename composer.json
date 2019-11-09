@@ -1,0 +1,25 @@
+{
+    "name": "LePush/LePush",
+    "type": "library",
+    "description": "LePush API PHP Client",
+    "homepage": "https://github.com/linsmile/LePush",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "LePush",
+            "email": "helloalex2020@gmail.com",
+            "homepage": "https://pushmember.lemajestic.com",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": ">=5.3.3",
+        "ext-curl": "*"
+    },
+    "autoload" : {
+        "psr-4": {"JPush\\": "src/JPush/"}
+    },
+    "autoload-dev": {
+        "psr-4": { "JPush\\Tests\\": "tests/" }
+    }
+}
