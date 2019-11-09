@@ -13,13 +13,10 @@
         }
     ],
     "require": {
-        "php": ">=5.3.3",
+        "php": ">=5.4.1",
         "ext-curl": "*"
     },
     "autoload" : {
-        "psr-4": {"JPush\\": "src/JPush/"}
+        "psr-4": {"LePush\\": "src/LePush/"}
     },
-    "autoload-dev": {
-        "psr-4": { "JPush\\Tests\\": "tests/" }
-    }
 }
