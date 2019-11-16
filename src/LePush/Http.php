@@ -8,19 +8,19 @@ final class Http {
 
     public static function get($client, $url) {
         $response = self::sendRequest($client, $url, Config::HTTP_GET, $body=null);
-        return self::processResp($response);
+        return self::processResp($client, $response);
     }
     public static function post($client, $url, $body) {
         $response = self::sendRequest($client, $url, Config::HTTP_POST, $body);
-        return self::processResp($response);
+        return self::processResp($client, $response);
     }
     public static function put($client, $url, $body) {
         $response = self::sendRequest($client, $url, Config::HTTP_PUT, $body);
-        return self::processResp($response);
+        return self::processResp($client, $response);
     }
     public static function delete($client, $url) {
         $response = self::sendRequest($client, $url, Config::HTTP_DELETE, $body=null);
-        return self::processResp($response);
+        return self::processResp($client, $response);
     }
 
     private static function sendRequest($client, $url, $method, $body=null, $times=1) {
@@ -108,7 +108,6 @@ final class Http {
                     }
                 }
             }
-            var_dump($body);
             $response['headers'] = $headers;
             $response['body'] = $body;
             $response['http_code'] = $httpCode;
@@ -117,15 +116,20 @@ final class Http {
         return $response;
     }
 
-    public static function processResp($response) {
+    public static function processResp($client, $response) {
         $data = json_decode($response['body'], true);
         if ($response['http_code'] === 200) {
             $result = array();
             $result['body'] = $data;
             $result['http_code'] = $response['http_code'];
             $result['headers'] = $response['headers'];
+            if(empty($data))
+            {
+                self::log($client, "ERROR_RESPONSE_DATA::"  . var_export($response, true));
+            }
             return $result;
         } elseif (is_null($data)) {
+            self::log($client, "ERROR_RESPONSE_DATA::"  . var_export($response, true));
             throw new ServiceNotAvaliable($response);
         } else {
             throw new APIRequestException($response);

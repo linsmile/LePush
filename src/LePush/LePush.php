@@ -13,25 +13,21 @@ class LePush {
 
     ];
 
-    const API_DOMAIN = 'http://api.upush.aoidc.net/';
+    const API_DOMAIN = 'https://pushapi.lemajestic.com';
 
-    public function __construct($appKey, $masterSecret, $logFile=Config::DEFAULT_LOG_FILE, $retryTimes=Config::DEFAULT_MAX_RETRY_TIMES, $zone = null) {
+    public function __construct($appKey, $masterSecret, array $options = []) {
         if (!is_string($appKey) || !is_string($masterSecret)) {
             throw new InvalidArgumentException("Invalid appKey or masterSecret");
         }
         $this->appKey = $appKey;
         $this->masterSecret = $masterSecret;
-        if (!is_null($retryTimes)) {
-            $this->retryTimes = $retryTimes;
+        if (!empty($options['retryTimes'])) {
+            $this->retryTimes = $options['retryTimes'];
         } else {
             $this->retryTimes = 1;
         }
-        $this->logFile = $logFile;
-        if (!is_null($zone) && in_array(strtoupper($zone), array_keys(self::$zones))) {
-            $this->zone = strtoupper($zone);
-        } else {
-            $this->zone= null;
-        }
+
+        $this->logFile = empty($options['logFile'])  ? Config::DEFAULT_LOG_FILE : $options['logFile'];
     }
 
     public function push() { return new PushPayload($this); }

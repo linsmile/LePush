@@ -13,10 +13,10 @@
         }
     ],
     "require": {
-        "php": ">=5.4.1",
+        "php": ">=5.5",
         "ext-curl": "*"
     },
     "autoload" : {
         "psr-4": {"LePush\\": "src/LePush/"}
-    }
+    },
 }

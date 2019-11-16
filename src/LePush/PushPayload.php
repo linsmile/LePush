@@ -153,6 +153,8 @@ class PushPayload {
 
         if (!is_null($this->cid)) {
             $payload['cid'] = $this->cid;
+        } else {
+            $payload['cid'] = uniqid();
         }
 
         // validate audience
@@ -393,9 +395,7 @@ class PushPayload {
         if (isset($opts['time_to_live']) && $opts['time_to_live'] <= 864000 && $opts['time_to_live'] >= 0) {
             $options['time_to_live'] = $opts['time_to_live'];
         }
-        if (isset($opts['override_msg_id'])) {
-            $options['override_msg_id'] = $opts['override_msg_id'];
-        }
+
         if (isset($opts['apns_production'])) {
             $options['apns_production'] = (bool)$opts['apns_production'];
         } else {
@@ -404,9 +404,7 @@ class PushPayload {
         if (isset($opts['apns_collapse_id'])) {
             $options['apns_collapse_id'] = $opts['apns_collapse_id'];
         }
-        if (isset($opts['big_push_duration']) && $opts['big_push_duration'] <= 1400 && $opts['big_push_duration'] >= 0) {
-            $options['big_push_duration'] = $opts['big_push_duration'];
-        }
+
         $this->options = $options;
 
         return $this;
