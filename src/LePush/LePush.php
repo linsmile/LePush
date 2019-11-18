@@ -8,10 +8,6 @@ class LePush {
     private $masterSecret;
     private $retryTimes;
     private $logFile;
-    private $zone;
-    private static $zones = [
-
-    ];
 
     const API_DOMAIN = 'https://pushapi.lemajestic.com';
 
