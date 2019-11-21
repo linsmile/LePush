@@ -8,7 +8,9 @@ require 'config.php';
 // 完整的推送示例
 // 这只是使用样例,不应该直接用于实际生产环境中 !!
 try {
-    $cid = uniqid(); //建议客户端存起来
+
+    $cid = $client->push()->getCid(); //建议客户端存起来
+
     $response = $client->push()
         ->setPlatform(array('ios', 'android'))
         // 一般情况下，关于 audience 的设置只需要调用 addAlias、addTag、addTagAnd  或 addRegistrationId
