@@ -8,6 +8,7 @@ require 'config.php';
 // 完整的推送示例
 // 这只是使用样例,不应该直接用于实际生产环境中 !!
 try {
+    $cid = uniqid(); //建议客户端存起来
     $response = $client->push()
         ->setPlatform(array('ios', 'android'))
         // 一般情况下，关于 audience 的设置只需要调用 addAlias、addTag、addTagAnd  或 addRegistrationId
@@ -46,6 +47,7 @@ try {
                 'jiguang'
             ),
         ))
+        ->setCid($cid)
         ->options(array(
             // sendno: 表示推送序号，纯粹用来作为 API 调用标识，
             // API 返回时被原样返回，以方便 API 调用方匹配请求与返回
