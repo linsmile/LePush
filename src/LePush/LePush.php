@@ -42,4 +42,8 @@ class LePush {
     public function makeURL($key) {
         return self::API_DOMAIN;
     }
+
+    public function getAppkey() {
+        return $this->appKey;
+    }
 }

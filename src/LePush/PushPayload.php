@@ -38,9 +38,8 @@ class PushPayload {
         $this->url = LePush::API_DOMAIN .  '/?ct=push&ac=index';
     }
 
-    public function getCid($count = 1, $type = 'push') {
-        $url = $this->client->makeURL('push') . 'push/cid?count=' . $count . '&type=' . $type;
-        return Http::get($this->client, $url);
+    public function getCid() {
+        return $this->client->getAppkey() . '_' . uniqid();
     }
 
     public function setCid($cid) {
@@ -139,9 +138,6 @@ class PushPayload {
         return $this;
     }
 
-
-
-
     public function build() {
         $payload = array();
 
@@ -154,7 +150,7 @@ class PushPayload {
         if (!is_null($this->cid)) {
             $payload['cid'] = $this->cid;
         } else {
-            $payload['cid'] = uniqid();
+            $payload['cid'] = $this->getCid();
         }
 
         // validate audience
