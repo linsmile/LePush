@@ -311,7 +311,7 @@ class PushPayload {
 
     public function androidNotification($alert = '', array $notification = array()) {
         $android = array();
-        $android['alert'] = is_string($alert) ? $alert : '';
+        $android['alert'] = (is_string($alert) || is_array($alert)) ? $alert : '';
         if (!empty($notification)) {
             if (isset($notification['builder_id'])) {
                 if (is_int($notification['builder_id'])) {
