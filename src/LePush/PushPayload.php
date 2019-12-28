@@ -251,7 +251,6 @@ class PushPayload {
     }
 
     public function send() {
-        echo "send........";
         return Http::post($this->client, $this->url, $this->build());
     }
 
