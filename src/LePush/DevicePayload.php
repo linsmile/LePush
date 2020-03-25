@@ -119,4 +119,36 @@ class DevicePayload {
         return Http::post($this->client, $uri, $payload);
     }
 
+    /**
+     * @param $device_id  设备ID
+     * @param $os         操作系统
+     */
+    public function register($device_id, $os) {
+        $uri = self::API_DOMAIN . '/?ct=device&ac=register';
+
+        $payload =  [
+            'device_id' => $device_id,
+            'os' => $os,
+        ];
+
+        return Http::post($this->client, $uri, $payload);
+    }
+
+    /**
+     * 更新推送token
+     * @param $registration_id
+     * @param $token
+     * @return array
+     */
+    public function updateToken($registration_id, $token) {
+        $uri = self::API_DOMAIN . '/?ct=registration&ac=update_token';
+
+        $payload =  [
+            'registration_id' => $registration_id,
+            'token' => $token,
+        ];
+
+        return Http::post($this->client, $uri, $payload);
+    }
+
 }
