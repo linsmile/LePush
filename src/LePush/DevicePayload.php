@@ -4,7 +4,7 @@ use InvalidArgumentException;
 
 class DevicePayload {
     private $client;
-    const API_DOMAIN = 'http://api.upush.aoidc.net';
+    const API_DOMAIN = 'https://pushapi.lemajestic.com';
     /**
      * DevicePayload constructor.
      * @param $client LePush
@@ -121,7 +121,7 @@ class DevicePayload {
 
     /**
      * @param $device_id  设备ID
-     * @param $os         操作系统
+     * @param $os         操作系统  可选: android  ios
      */
     public function register($device_id, $os) {
         $uri = self::API_DOMAIN . '/?ct=device&ac=register';
@@ -136,8 +136,8 @@ class DevicePayload {
 
     /**
      * 更新推送token
-     * @param $registration_id
-     * @param $token
+     * @param $registration_id   注册接口返回的 $registration_id
+     * @param $token             推送token
      * @return array
      */
     public function updateToken($registration_id, $token) {
