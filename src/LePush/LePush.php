@@ -32,7 +32,7 @@ class LePush {
     public function report() { return new ReportPayload($this); }
     public function device() { return new DevicePayload($this); }
 
-    public function getAuthStr() { return $this->appKey . ":" . $this->masterSecret; }
+    public function getAuthStr() { return self::generateTempToken(); }
     public function getRetryTimes() { return $this->retryTimes; }
     public function getLogFile() { return $this->logFile; }
 
