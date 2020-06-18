@@ -22,3 +22,4 @@
 ```php
 require 'path_to_sdk/autoload.php';
 ```
+test``
